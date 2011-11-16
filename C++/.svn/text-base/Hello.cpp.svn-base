@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+
+	do {
+		char command[6];
+		int n;
+		scanf("%d", &n);
+		if (n == 0)
+			break;
+		int south = 5, north = 2, west = 3, east = 4, bottom = 6, top = 1;
+		for (int i = 0; i < n; i++) {
+			scanf("%s", command);
+			if (!strcmp(command, "north")) {
+				temp = bottom;
+				bottom = north;
+				north = top;
+				top = south;
+				south = temp;
+			} else if (!strcmp(command, "south")) {
+				temp = bottom;
+				bottom = south;
+				south = top;
+				top = north;
+				north = temp;
+			} else if (!strcmp(command, "west")) {
+				temp = bottom;
+				bottom = west;
+				west = top;
+				top = east;
+				east = temp;
+			} else if (!strcmp(command, "east")) {
+				temp = bottom;
+				bottom = east;
+				east = top;
+				top = west;
+				west = temp;
+			}
+		}
+		printf("%d\n", top);
+	} while (n != 0);
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+long long aux[100][100];
+
+bool isSymmetric(int n) {
+	int sizeI = n / 2, sizeJ = n - 1;
+	for (int i = 0; i <= sizeI; i++)
+		for (int j = 0; j <= sizeJ; j++)
+			if (aux[i][j] != aux[sizeJ - i][sizeJ - j] || aux[i][j] < 0 || aux[sizeJ - i][sizeJ - j] < 0)
+				return false;
+
+	return true;
+}
+
+int main() {
+	int t, n, i, j, k, num;
+	char s[3];
+	scanf("%d", &t);
+	for (k = 1; k <= t; k++) {
+		scanf("%s%s%d", s, s, &n);
+		for (i = 0; i < n; i++)
+			for (j = 0; j < n; j++)
+				scanf("%lld", &aux[i][j]);
+		printf("Test #%d: %s.\n", k, isSymmetric(n) ? "Symmetric" : "Non-symmetric");
+	}
+}

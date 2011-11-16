@@ -1,0 +1,35 @@
+#include <math.h>
+#include <iostream>
+
+using namespace std;
+
+bool isPrime(int n) {
+	int root = (int) sqrt(n);
+	for (int i = 3; i < root; i += 2)
+		if (!(n % i))
+			return false;
+	return true;
+}
+
+int main() {
+	long primeValue[100000] = { 3 }, i, j, out, LAST_TWIN_PRIME = 18409201;
+	int MAX_ROOT = (int) sqrt(LAST_TWIN_PRIME);
+	bool *prime = new bool[LAST_TWIN_PRIME];
+	memset(prime, true, LAST_TWIN_PRIME);
+
+	//Seta os não primos
+	for (i = 3; i <= MAX_ROOT; i += 2)
+		if (isPrime(i))
+			for (j = 2 * i - 1; j < LAST_TWIN_PRIME; j += i)
+				prime[j] = false;
+
+	i = 1;
+	//Armazena os valores com a propriedade (a incrementação de 6 é uma otimização)
+	for (j = 4; j <= LAST_TWIN_PRIME; j += 6)
+		if (prime[j] && prime[j + 2])
+			primeValue[i++] = j + 1;
+
+	//Imprime os valores
+	while (cin >> i)
+		printf("(%d, %d)\n", primeValue[i - 1], primeValue[i - 1] + 2);
+}

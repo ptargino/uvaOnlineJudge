@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    char num[100001];
+    long size, d, i, end, start;
+    while (cin >> size >> d && size && d) {
+        gets(num);
+        gets(num);
+        end = start = 0;
+        //Para não precisar fazer caso especial para último(s) dígito(s)
+        num[size] = '9' + 1;
+        while (d && start < size) {
+            //Procura o maior dígito dentre uma faixa, e depois imprime-o
+            for (i = start; i <= start + d; i++)
+                if (num[i] > num[end])
+                    end = i;
+            if (end < size)
+                putchar(num[end]);
+            //Atualiza quantidade de digitos eliminados
+            d -= (end - start);
+            //Começa novamente a partir do dígito seguinte
+            end = start = end + 1;
+        }
+        //Imprime o resto dos dígitos não percorridos
+        while (end < size)
+            putchar(num[end++]);
+        putchar('\n');
+    }
+}
