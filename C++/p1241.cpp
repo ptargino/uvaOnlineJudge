@@ -1,27 +1,26 @@
 #include "stdio.h"
-#include <algorithm>
 
 using namespace std;
 
 int main(){
 	int t;
 	scanf("%d", &t);
-	int match[1024];
+	bool match[1024];
 	while(t--){
 		int n, m;
 		scanf("%d%d", &n, &m);
 		int size = 1 << n;
 		for(int i = 0; i < size; i++)
-			match[i] = 1;
+			match[i] = true;
 		int k;
 		for(int i = 0; i < m; i++){
 			scanf("%d", &k);
-			match[k-1] = 0;
+			match[k-1] = false;
 		}
 		
 		int count = 0;
 		while(size){
-			size /= 2;
+			size >>= 1;
 			for(int i = 0; i < size; i++){
 				if(match[2*i] ^ match[2*i + 1])
 					count++;
