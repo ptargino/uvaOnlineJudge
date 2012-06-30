@@ -24,7 +24,7 @@ int main() {
 	int n, numObjects, numPeople, i, peopleWeight;
 	long total;
 	scanf("%d", &n);
-	for (; n; n--) {
+	while (n--) {
 		scanf("%d", &numObjects);
 		for (i = 1; i <= numObjects; i++)
 			scanf("%d%d", &value[i], &weigth[i]);
